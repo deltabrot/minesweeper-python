@@ -53,14 +53,14 @@ def print_game(game_state, column_characters, row_characters):
     width = len(game_state[0])
     height = len(game_state)
 
-    print("     ", end="")
+    print("      ", end="")
     for i in range(width):
-        print(column_characters[i], end="  ")
+        print(column_characters[i], end="    ")
     print()
 
     print("    ┌", end="")
     for x in range(width):
-        print(horizontal * 2, end="")
+        print(horizontal * 4, end="")
         if x < width - 1:
             print("┬", end="")
         else:
@@ -74,18 +74,18 @@ def print_game(game_state, column_characters, row_characters):
         for x in range(width):
             match game_state[y][x]:
                 case CellState.NOT_TOUCHED:
-                    print("│░░", end="")
+                    print("│ ░░ ", end="")
                 case CellState.TOUCHED:
-                    print("│  ", end="")
+                    print("│    ", end="")
                 case CellState.MINE:
-                    print("│░░", end="")
+                    print("│ ░░ ", end="")
                 case CellState.EXPLODED:
-                    print("│██", end="")
+                    print("│ ██ ", end="")
                 case _:
                     if len(str(game_state[y][x])) == 1:
-                        print("│%d " % game_state[y][x], end="")
+                        print("│ %d  " % game_state[y][x], end="")
                     else:
-                        print("│%d" % game_state[y][x], end="")
+                        print("│ %d " % game_state[y][x], end="")
             if x == width - 1:
                 print("│", end="")
 
@@ -93,7 +93,7 @@ def print_game(game_state, column_characters, row_characters):
         if y < height - 1:
             print("    ├", end="")
             for x in range(width):
-                print(horizontal * 2, end="")
+                print(horizontal * 4, end="")
                 if x < width - 1:
                     print("┼", end="")
                 else:
@@ -101,7 +101,7 @@ def print_game(game_state, column_characters, row_characters):
         else:
             print("    └", end="")
             for x in range(width):
-                print(horizontal * 2, end="")
+                print(horizontal * 4, end="")
                 if x < width - 1:
                     print("┴", end="")
                 else:
@@ -212,9 +212,9 @@ def check_for_win(game_state, mine_locations):
     return True
 
 def main():
-    width = 26
-    height = 13
-    mines = 20
+    width = 15
+    height = 10
+    mines = 15
 
     if width > 26:
         width = 26
