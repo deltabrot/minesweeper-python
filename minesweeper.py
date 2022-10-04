@@ -52,6 +52,7 @@ def print_graphic_row(width, start, middle, connector, end):
             print(connector, end="")
         else:
             print(end, end="")
+    print()
 
 def print_game(game_state, column_characters, row_characters):
     width = len(game_state[0])
