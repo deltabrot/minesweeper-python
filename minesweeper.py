@@ -52,6 +52,7 @@ def print_graphic_row(width, start, middle, connector, end):
             print(connector, end="")
         else:
             print(end, end="")
+    print()
 
 def print_game(game_state, column_characters, row_characters):
     width = len(game_state[0])
@@ -60,7 +61,6 @@ def print_game(game_state, column_characters, row_characters):
     print("      ", end="")
     for i in range(width):
         print(column_characters[i], end="    ")
-    print()
 
     print_graphic_row(width, "┌", "─", "┬", "┐")
     print()
@@ -92,7 +92,6 @@ def print_game(game_state, column_characters, row_characters):
             print_graphic_row(width, "├", "─", "┼", "┤")
         else:
             print_graphic_row(width, "└", "─", "┴", "┘")
-        print()
     print()
 
 def get_user_input(row_characters, column_characters):
