@@ -1,9 +1,9 @@
 # minesweeper-python
 
-![Screenshot of CLI](screenshot.jpg)
-
 An example of minesweeper written in [Python](https://www.python.org/) which can
 be played in a terminal
+
+![Screenshot of CLI](screenshot.jpg)
 
 ## How to run
 
