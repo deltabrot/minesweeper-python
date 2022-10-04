@@ -44,12 +44,16 @@ def generate_game_state(width, height, mine_locations):
 
     return game_state
 
-def print_game(game_state, column_characters, row_characters):
-    top_edge = "┌" + "┐"
-    bottom_edge = "└" + "┘"
-    horizontal = "─"
-    vertical = "│"
+def print_graphic_row(width, start, middle, connector, end):
+    print("    %s" % start, end="")
+    for x in range(width):
+        print(middle * 4, end="")
+        if x < width - 1:
+            print(connector, end="")
+        else:
+            print(end, end="")
 
+def print_game(game_state, column_characters, row_characters):
     width = len(game_state[0])
     height = len(game_state)
 
@@ -58,13 +62,7 @@ def print_game(game_state, column_characters, row_characters):
         print(column_characters[i], end="    ")
     print()
 
-    print("    ┌", end="")
-    for x in range(width):
-        print(horizontal * 4, end="")
-        if x < width - 1:
-            print("┬", end="")
-        else:
-            print("┐", end="")
+    print_graphic_row(width, "┌", "─", "┬", "┐")
     print()
     for y in range(height):
         if len(row_characters[y]) == 1:
@@ -91,21 +89,9 @@ def print_game(game_state, column_characters, row_characters):
 
         print()
         if y < height - 1:
-            print("    ├", end="")
-            for x in range(width):
-                print(horizontal * 4, end="")
-                if x < width - 1:
-                    print("┼", end="")
-                else:
-                    print("┤", end="")
+            print_graphic_row(width, "├", "─", "┼", "┤")
         else:
-            print("    └", end="")
-            for x in range(width):
-                print(horizontal * 4, end="")
-                if x < width - 1:
-                    print("┴", end="")
-                else:
-                    print("┘", end="")
+            print_graphic_row(width, "└", "─", "┴", "┘")
         print()
     print()
 
