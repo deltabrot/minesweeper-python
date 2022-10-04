@@ -31,6 +31,11 @@ Enter a location: EC
 There are two variables defined in the `main()` function in `minesweeper.py`,
 `width` and `height`. Modifying these will affect the size of the board.
 
+## Changing how many mines there are
+
+There is another variable defined in `main()` called `mines`, modifying this
+will affect the number of mines generated.
+
 ## Additional notes
 
 There is currently no way to place a "flag" in a cell, however you will receive
