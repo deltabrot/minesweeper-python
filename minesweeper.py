@@ -2,14 +2,18 @@ import os
 from enum import Enum
 from random import randint
 
+# error messages
 ERROR_INVALID_INPUT = "Invalid input. Please enter a valid location."
 
+# CellState is an enum that represents the state of a cell.
 class CellState(Enum):
     NOT_TOUCHED = "not_touched"
     TOUCHED = "touched"
     MINE = "mine"
     EXPLODED = "exploded"
 
+# get_unique_random_location returns a random location that is not already in
+# the mine_locations list.
 def get_unique_random_location(mine_locations, width, height):
     random_location = None
     is_unique = False
@@ -20,6 +24,7 @@ def get_unique_random_location(mine_locations, width, height):
 
     return random_location
 
+# generate_mines generates a random list of mine locations.
 def generate_mines(mines, width, height):
     mine_locations = []
 
@@ -29,7 +34,8 @@ def generate_mines(mines, width, height):
 
     return mine_locations
 
-
+# generate_game_state generates a game state of the given width and height based
+# on the mine locations.
 def generate_game_state(width, height, mine_locations):
     game_state = []
 
@@ -44,6 +50,9 @@ def generate_game_state(width, height, mine_locations):
 
     return game_state
 
+# print_graphic_row prints a row of the graphic part of the game board,
+# specifically renders the parts in between the cells themselves to complete
+# the board graphic.
 def print_graphic_row(width, start, middle, connector, end):
     print("    %s" % start, end="")
     for x in range(width):
@@ -54,6 +63,7 @@ def print_graphic_row(width, start, middle, connector, end):
             print(end, end="")
     print()
 
+# print_game prints the graphical game board.
 def print_game(game_state, column_characters, row_characters):
     width = len(game_state[0])
     height = len(game_state)
@@ -94,6 +104,10 @@ def print_game(game_state, column_characters, row_characters):
             print_graphic_row(width, "└", "─", "┴", "┘")
     print()
 
+# get_input gets the user input and returns the location of the cell they
+# entered.
+# If the user enters an invalid input, it will continue to ask for input until
+# the user enters a valid input.
 def get_user_input(row_characters, column_characters):
     is_valid = False
 
@@ -118,6 +132,8 @@ def get_user_input(row_characters, column_characters):
         row_characters.index(user_input[1]),
     ]
 
+# how_many_mines_adjacent returns the number of mines adjacent to the given cell
+# location.
 def how_many_mines_adjacent(game_state, location):
     x, y = location
     surrounding_cells = [
@@ -142,6 +158,9 @@ def how_many_mines_adjacent(game_state, location):
 
     return mines
 
+# check_cell checks the cell at the given location and updates the game state
+# accordingly.
+# Returns the number of adjacent mines.
 def check_cell(game_state, mine_locations, cell):
     if cell[0] < 0 or cell[0] >= len(game_state[0]):
         return
@@ -157,6 +176,8 @@ def check_cell(game_state, mine_locations, cell):
             return adjacent_mines
     return 0
 
+# check_surrounding_cells checks the surrounding cells of the given cell and
+# runs check_cell on them.
 def check_surrounding_cells(game_state, mine_locations, location):
     x, y = location
     surrounding_cells = [
@@ -175,7 +196,8 @@ def check_surrounding_cells(game_state, mine_locations, location):
 
     return None
 
-def update_cell(game_state, mine_locations, location):
+# play_cell plays the cell at the given location.
+def play_cell(game_state, mine_locations, location):
     x, y = location
 
     if [x, y] in mine_locations:
@@ -189,6 +211,7 @@ def update_cell(game_state, mine_locations, location):
         check_surrounding_cells(game_state, mine_locations, location)
     return False
 
+# check_for_win checks if the game has been won.
 def check_for_win(game_state, mine_locations):
     for y in range(len(game_state)):
         for x in range(len(game_state[0])):
@@ -196,6 +219,7 @@ def check_for_win(game_state, mine_locations):
                 return False
     return True
 
+# main is the main function of the program and contains the main game loop.
 def main():
     width = 15
     height = 10
@@ -223,7 +247,7 @@ def main():
         os.system('cls' if os.name == 'nt' else 'clear')
         print_game(game_state, column_characters, row_characters)
         location = get_user_input(row_characters, column_characters)
-        is_game_over = update_cell(game_state, mine_locations, location)
+        is_game_over = play_cell(game_state, mine_locations, location)
         if check_for_win(game_state, mine_locations):
             os.system('cls' if os.name == 'nt' else 'clear')
             print_game(game_state, column_characters, row_characters)
