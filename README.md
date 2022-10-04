@@ -26,12 +26,12 @@ Enter a location: EC
 
 **Note:** The input is case insensitive, so you could also input `ec`.
 
-## Changing the size of the board
+### Changing the size of the board
 
 There are two variables defined in the `main()` function in `minesweeper.py`,
 `width` and `height`. Modifying these will affect the size of the board.
 
-## Changing how many mines there are
+### Changing how many mines there are
 
 There is another variable defined in `main()` called `mines`, modifying this
 will affect the number of mines generated.
