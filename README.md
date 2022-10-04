@@ -1,6 +1,6 @@
 # minesweeper-python
 
-An example of minesweeper written in (Python)[https://www.python.org/] which can
+An example of minesweeper written in [Python](https://www.python.org/) which can
 be played in a terminal
 
 ## How to run
