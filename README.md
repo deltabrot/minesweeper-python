@@ -1,7 +1,7 @@
 # minesweeper-python
 
 An example of minesweeper written in [Python](https://www.python.org/) which can
-be played in a terminal
+be played in a terminal.
 
 ![Screenshot of CLI](screenshot.jpg)
 
